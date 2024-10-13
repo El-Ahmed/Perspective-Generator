@@ -17,6 +17,9 @@ function Perspective({
 }) {
   const svgRef = useRef(null);
 
+  const getStrokeWidth = () => {
+    return Math.min(height / 500, width / 500);
+  };
   const getBasicSecondPoint = (guideline: Guideline) => {
     const { lineCount, point } = guideline;
     const points = Array.from(new Array(lineCount), (_, i) => i).map((line) => {
@@ -90,7 +93,7 @@ function Perspective({
               x2={points.point2.x}
               y2={points.point2.y}
               stroke="blue"
-              strokeWidth={2}
+              strokeWidth={getStrokeWidth()}
             ></line>
           );
         })}
@@ -102,7 +105,7 @@ function Perspective({
               x2={points.point2.x}
               y2={points.point2.y}
               stroke="red"
-              strokeWidth={2}
+              strokeWidth={getStrokeWidth()}
             ></line>
           );
         })}
@@ -114,7 +117,7 @@ function Perspective({
               x2={points.point2.x}
               y2={points.point2.y}
               stroke="purple"
-              strokeWidth={2}
+              strokeWidth={getStrokeWidth()}
             ></line>
           );
         })}

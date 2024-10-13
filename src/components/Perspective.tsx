@@ -74,13 +74,14 @@ function Perspective({
   };
 
   return (
-    <div>
+    <div style={{ width: "100%", height: "100%", display: "flex" }}>
       <svg
         ref={svgRef}
-        width={width}
-        height={height}
-        style={{ background: "white" }}
+        viewBox={`0 0 ${width} ${height}`}
+        width="100%"
+        height="100%"
       >
+        <rect x="0" y="0" width={width} height={height} fill="white" />
         {getLines(guideline1).map((points) => {
           return (
             <line

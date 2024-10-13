@@ -1,8 +1,6 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  height: 100vh;
+  width: 100vw;
 }
 
 .logo {
@@ -39,4 +37,20 @@
 
 .read-the-docs {
   color: #888;
+}
+
+.form {
+  position: absolute;
+  background-color: #24242499;
+  border-radius: 2rem;
+  margin: 2rem;
+}
+.settings {
+  cursor: pointer;
+  padding: 1rem;
+  width: fit-content;
+}
+
+.form-settings {
+  padding: 2rem;
 }

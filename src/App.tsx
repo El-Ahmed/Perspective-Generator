@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import "./App.css";
 import ControllerForm from "./components/ControllerForm";
-import Perspective from "./components/Perspective";
+import Perspective, { PerspectiveHandle } from "./components/Perspective";
 
 function App() {
   const [guideline1, setGuideline1] = useState({
@@ -19,6 +19,8 @@ function App() {
   const [height, setHeight] = useState(1080);
   const [width, setWidth] = useState(1920);
   const [showSettings, setShowSettings] = useState(false);
+
+  const perspectiveRef = useRef<PerspectiveHandle>(null);
 
   return (
     <>
@@ -66,10 +68,17 @@ function App() {
               guideline={guideline3}
               guidelineChange={setGuideline3}
             />
+            <button
+              className="export"
+              onClick={() => perspectiveRef.current?.exportSvg?.()}
+            >
+              Export
+            </button>
           </div>
         )}
       </div>
       <Perspective
+        ref={perspectiveRef}
         guideline1={guideline1}
         guideline2={guideline2}
         guideline3={guideline3}

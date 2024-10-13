@@ -1,21 +1,46 @@
-import { useRef } from "react";
+import { forwardRef, useImperativeHandle, useRef } from "react";
 import { Guideline, Point } from "../models";
 
+export type PerspectiveHandle = {
+  exportSvg: () => void;
+};
+
 const MAX_LENGTH = 10_000;
-function Perspective({
-  guideline1,
-  guideline2,
-  guideline3,
-  height,
-  width,
-}: {
-  guideline1: Guideline;
-  guideline2: Guideline;
-  guideline3: Guideline;
-  height: number;
-  width: number;
-}) {
+const Perspective = forwardRef<
+  PerspectiveHandle,
+  {
+    guideline1: Guideline;
+    guideline2: Guideline;
+    guideline3: Guideline;
+    height: number;
+    width: number;
+  }
+>(({ guideline1, guideline2, guideline3, height, width }, ref) => {
   const svgRef = useRef(null);
+
+  const exportSvg = () => {
+    if (!svgRef.current) return;
+
+    const svgElement = svgRef.current;
+    const serializer = new XMLSerializer();
+    const svgString = serializer.serializeToString(svgElement);
+
+    const blob = new Blob([svgString], { type: "image/svg+xml" });
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "guidelines.svg";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    URL.revokeObjectURL(url);
+  };
+
+  useImperativeHandle(ref, () => ({
+    exportSvg,
+  }));
 
   const getStrokeWidth = () => {
     return Math.min(height / 500, width / 500);
@@ -124,6 +149,5 @@ function Perspective({
       </svg>
     </div>
   );
-}
-
+});
 export default Perspective;

@@ -54,3 +54,7 @@
 .form-settings {
   padding: 2rem;
 }
+.export {
+  margin: 1rem;
+  margin-inline: 0;
+}

@@ -5,19 +5,19 @@ import Perspective from "./components/Perspective";
 
 function App() {
   const [guideline1, setGuideline1] = useState({
-    point: { x: -100, y: 100 },
-    lineCount: 10,
+    point: { x: 200, y: 400 },
+    lineCount: 20,
   });
   const [guideline2, setGuideline2] = useState({
-    point: { x: 500, y: 100 },
-    lineCount: 10,
+    point: { x: 1720, y: 400 },
+    lineCount: 20,
   });
   const [guideline3, setGuideline3] = useState({
-    point: { x: 300, y: 350 },
-    lineCount: 10,
+    point: { x: 960, y: -4000 },
+    lineCount: 120,
   });
-  const [height, setHeight] = useState(400);
-  const [width, setWidth] = useState(600);
+  const [height, setHeight] = useState(1080);
+  const [width, setWidth] = useState(1920);
   const [showSettings, setShowSettings] = useState(false);
 
   return (

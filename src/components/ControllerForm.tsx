@@ -1,4 +1,5 @@
 import { Guideline } from "../models";
+import ColorPicker from "./ColorPicker";
 
 type guidelineChange = (guideline: Guideline) => void;
 
@@ -12,17 +13,16 @@ const ControllerForm = ({
   return (
     <form>
       <label>Color: </label>
-      <input
-        type="color"
-        value={guideline.color}
-        onChange={(e) =>
+      <ColorPicker
+        color={guideline.color}
+        colorChanged={(color: string) =>
           guidelineChange({
             point: guideline.point,
             lineCount: guideline.lineCount,
-            color: e.target.value,
+            color: color,
           })
         }
-      ></input>
+      />
       <br />
       <label>X: </label>
       <input

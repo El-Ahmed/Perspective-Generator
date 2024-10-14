@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import "./App.css";
 import ControllerForm from "./components/ControllerForm";
 import Perspective, { PerspectiveHandle } from "./components/Perspective";
+import ColorPicker from "./components/ColorPicker";
 
 function App() {
   const [guideline1, setGuideline1] = useState({
@@ -46,11 +47,10 @@ function App() {
         {!showSettings ? null : (
           <div className="form-settings">
             <label>Background color: </label>
-            <input
-              type="color"
-              value={backgroundColor}
-              onChange={(e) => setBackgroundColor(e.target.value)}
-            ></input>
+            <ColorPicker
+              color={backgroundColor}
+              colorChanged={setBackgroundColor}
+            ></ColorPicker>
             <br />
             <label>Width: </label>
             <input

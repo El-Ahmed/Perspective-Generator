@@ -59,3 +59,12 @@
   margin-inline: 0;
   margin-right: 0.5rem;
 }
+
+.color {
+  height: 2rem;
+  vertical-align: middle;
+  margin: 0.5rem;
+}
+.color-picker {
+  position: absolute;
+}

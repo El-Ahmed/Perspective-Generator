@@ -18,6 +18,7 @@ function App() {
   });
   const [height, setHeight] = useState(1080);
   const [width, setWidth] = useState(1920);
+  const [backgroundColor, setBackgroundColor] = useState("#ffffff");
   const [showSettings, setShowSettings] = useState(false);
 
   const perspectiveRef = useRef<PerspectiveHandle>(null);
@@ -41,6 +42,13 @@ function App() {
         </div>
         {!showSettings ? null : (
           <div className="form-settings">
+            <label>Background color: </label>
+            <input
+              type="color"
+              value={backgroundColor}
+              onChange={(e) => setBackgroundColor(e.target.value)}
+            ></input>
+            <br />
             <label>Width: </label>
             <input
               type="number"
@@ -88,6 +96,7 @@ function App() {
         guideline1={guideline1}
         guideline2={guideline2}
         guideline3={guideline3}
+        backgroundColor={backgroundColor}
         height={height}
         width={width}
       />

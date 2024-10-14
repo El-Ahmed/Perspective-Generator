@@ -72,7 +72,13 @@ function App() {
               className="export"
               onClick={() => perspectiveRef.current?.exportSvg?.()}
             >
-              Export
+              Export SVG
+            </button>
+            <button
+              className="export"
+              onClick={() => perspectiveRef.current?.exportPng?.()}
+            >
+              Export PNG
             </button>
           </div>
         )}

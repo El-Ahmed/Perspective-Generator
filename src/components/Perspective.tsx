@@ -3,6 +3,7 @@ import { Guideline, Point } from "../models";
 
 export type PerspectiveHandle = {
   exportSvg: () => void;
+  exportPng: () => void;
 };
 
 const MAX_LENGTH = 10_000;
@@ -38,8 +39,40 @@ const Perspective = forwardRef<
     URL.revokeObjectURL(url);
   };
 
+  const exportPng = () => {
+    if (!svgRef.current) return;
+    const svgElement = svgRef.current;
+    const canvas = document.createElement("canvas");
+    canvas.width = width;
+    canvas.height = height;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    const svgData = new XMLSerializer().serializeToString(svgElement);
+    const svgBlob = new Blob([svgData], {
+      type: "image/svg+xml;charset=utf-8",
+    });
+    const url = URL.createObjectURL(svgBlob);
+
+    const img = new Image();
+    img.onload = () => {
+      ctx.drawImage(img, 0, 0, width, height);
+      URL.revokeObjectURL(url);
+
+      const pngUrl = canvas.toDataURL("image/png");
+      const link = document.createElement("a");
+      link.href = pngUrl;
+      link.download = "guidelines.png";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    };
+    img.src = url;
+  };
+
   useImperativeHandle(ref, () => ({
     exportSvg,
+    exportPng,
   }));
 
   const getStrokeWidth = () => {

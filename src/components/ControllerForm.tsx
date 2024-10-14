@@ -11,6 +11,19 @@ const ControllerForm = ({
 }) => {
   return (
     <form>
+      <label>Color: </label>
+      <input
+        type="color"
+        value={guideline.color}
+        onChange={(e) =>
+          guidelineChange({
+            point: guideline.point,
+            lineCount: guideline.lineCount,
+            color: e.target.value,
+          })
+        }
+      ></input>
+      <br />
       <label>X: </label>
       <input
         type="number"
@@ -19,6 +32,7 @@ const ControllerForm = ({
           guidelineChange({
             point: { x: Number(e.target.value), y: guideline.point.y },
             lineCount: guideline.lineCount,
+            color: guideline.color,
           })
         }
       />
@@ -30,6 +44,7 @@ const ControllerForm = ({
           guidelineChange({
             point: { y: Number(e.target.value), x: guideline.point.x },
             lineCount: guideline.lineCount,
+            color: guideline.color,
           })
         }
       />
@@ -41,6 +56,7 @@ const ControllerForm = ({
           guidelineChange({
             point: guideline.point,
             lineCount: Number(e.target.value),
+            color: guideline.color,
           })
         }
       />

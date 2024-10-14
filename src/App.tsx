@@ -7,14 +7,17 @@ function App() {
   const [guideline1, setGuideline1] = useState({
     point: { x: 200, y: 400 },
     lineCount: 20,
+    color: "#0000ff",
   });
   const [guideline2, setGuideline2] = useState({
     point: { x: 1720, y: 400 },
     lineCount: 20,
+    color: "#ff0000",
   });
   const [guideline3, setGuideline3] = useState({
     point: { x: 960, y: -4000 },
     lineCount: 120,
+    color: "#800080",
   });
   const [height, setHeight] = useState(1080);
   const [width, setWidth] = useState(1920);

@@ -166,7 +166,7 @@ const Perspective = forwardRef<
                 y1={points.point1.y}
                 x2={points.point2.x}
                 y2={points.point2.y}
-                stroke="blue"
+                stroke={guideline1.color}
                 strokeWidth={getStrokeWidth()}
               ></line>
             );
@@ -178,7 +178,7 @@ const Perspective = forwardRef<
                 y1={points.point1.y}
                 x2={points.point2.x}
                 y2={points.point2.y}
-                stroke="red"
+                stroke={guideline2.color}
                 strokeWidth={getStrokeWidth()}
               ></line>
             );
@@ -190,7 +190,7 @@ const Perspective = forwardRef<
                 y1={points.point1.y}
                 x2={points.point2.x}
                 y2={points.point2.y}
-                stroke="purple"
+                stroke={guideline3.color}
                 strokeWidth={getStrokeWidth()}
               ></line>
             );

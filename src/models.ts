@@ -6,4 +6,5 @@ export interface Point {
 export interface Guideline {
   point: Point;
   lineCount: number;
+  color: string;
 }

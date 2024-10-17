@@ -59,6 +59,7 @@
   margin: 1rem;
   margin-inline: 0;
   margin-right: 0.5rem;
+  float: right;
 }
 
 .color {
@@ -77,4 +78,7 @@
 .point {
   padding-right: 0.5rem;
   padding-bottom: 0.5rem;
+}
+th {
+  text-align: left;
 }

@@ -11,58 +11,71 @@ const ControllerForm = ({
   guidelineChange: guidelineChange;
 }) => {
   return (
-    <form>
-      <label>Color: </label>
-      <ColorPicker
-        color={guideline.color}
-        colorChanged={(color: string) =>
-          guidelineChange({
-            point: guideline.point,
-            lineCount: guideline.lineCount,
-            color: color,
-          })
-        }
-      />
-      <br />
-      <label>X position: </label>
-      <input
-        type="number"
-        value={guideline.point.x}
-        onChange={(e) =>
-          guidelineChange({
-            point: { x: Number(e.target.value), y: guideline.point.y },
-            lineCount: guideline.lineCount,
-            color: guideline.color,
-          })
-        }
-      />
-      <br />
-      <label>Y position: </label>
-      <input
-        type="number"
-        value={guideline.point.y}
-        onChange={(e) =>
-          guidelineChange({
-            point: { y: Number(e.target.value), x: guideline.point.x },
-            lineCount: guideline.lineCount,
-            color: guideline.color,
-          })
-        }
-      />
-      <br />
-      <label>Lines count: </label>
-      <input
-        type="number"
-        value={guideline.lineCount}
-        onChange={(e) =>
-          guidelineChange({
-            point: guideline.point,
-            lineCount: Number(e.target.value),
-            color: guideline.color,
-          })
-        }
-      />
-    </form>
+    <table>
+      <tr>
+        <th>Color:</th>
+        <th>
+          <ColorPicker
+            color={guideline.color}
+            colorChanged={(color: string) =>
+              guidelineChange({
+                point: guideline.point,
+                lineCount: guideline.lineCount,
+                color: color,
+              })
+            }
+          />
+        </th>
+      </tr>
+      <tr>
+        <th>X position:</th>
+        <th>
+          <input
+            type="number"
+            value={guideline.point.x}
+            onChange={(e) =>
+              guidelineChange({
+                point: { x: Number(e.target.value), y: guideline.point.y },
+                lineCount: guideline.lineCount,
+                color: guideline.color,
+              })
+            }
+          />
+        </th>
+      </tr>
+      <tr>
+        <th>Y position:</th>
+        <th>
+          <input
+            type="number"
+            value={guideline.point.y}
+            onChange={(e) =>
+              guidelineChange({
+                point: { y: Number(e.target.value), x: guideline.point.x },
+                lineCount: guideline.lineCount,
+                color: guideline.color,
+              })
+            }
+          />
+        </th>
+      </tr>
+      <tr>
+        <th>Lines count:</th>
+        <th>
+          <input
+            type="number"
+            value={guideline.lineCount}
+            onChange={(e) =>
+              guidelineChange({
+                point: guideline.point,
+                lineCount: Number(e.target.value),
+                color: guideline.color,
+              })
+            }
+          />
+        </th>
+      </tr>
+    </table>
   );
 };
 

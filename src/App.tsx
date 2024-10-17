@@ -46,43 +46,56 @@ function App() {
         </div>
         {!showSettings ? null : (
           <div className="form-settings">
-            <label>Background color: </label>
-            <ColorPicker
-              color={backgroundColor}
-              colorChanged={setBackgroundColor}
-            ></ColorPicker>
-            <br />
-            <label>Width: </label>
-            <input
-              type="number"
-              value={width}
-              onChange={(e) => setWidth(Number(e.target.value))}
-            />
-            <br />
-            <label>Height: </label>
-            <input
-              type="number"
-              value={height}
-              onChange={(e) => setHeight(Number(e.target.value))}
-            />
+            <h2>Container:</h2>
+            <table>
+              <tr>
+                <th>Background color:</th>
+                <th>
+                  <ColorPicker
+                    color={backgroundColor}
+                    colorChanged={setBackgroundColor}
+                  ></ColorPicker>
+                </th>
+              </tr>
+              <tr>
+                <th>Width:</th>
+                <th>
+                  <input
+                    type="number"
+                    value={width}
+                    onChange={(e) => setWidth(Number(e.target.value))}
+                  />
+                </th>
+              </tr>
+              <tr>
+                <th>Height:</th>
+                <th>
+                  <input
+                    type="number"
+                    value={height}
+                    onChange={(e) => setHeight(Number(e.target.value))}
+                  />
+                </th>
+              </tr>
+            </table>
             <div className="points">
               <div className="point">
-                <legend>Point 1</legend>
+                <h2>Point 1:</h2>
                 <ControllerForm
                   guideline={guideline1}
                   guidelineChange={setGuideline1}
                 />
               </div>
               <div className="point">
-                <legend>Point 2</legend>
+                <h2>Point 2:</h2>
                 <ControllerForm
                   guideline={guideline2}
                   guidelineChange={setGuideline2}
                 />
               </div>
             </div>
-            <div>
-              <legend>Point 3</legend>
+            <div className="point">
+              <h2>Point 3:</h2>
               <ControllerForm
                 guideline={guideline3}
                 guidelineChange={setGuideline3}

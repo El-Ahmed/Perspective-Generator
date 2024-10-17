@@ -58,27 +58,36 @@ function App() {
               value={width}
               onChange={(e) => setWidth(Number(e.target.value))}
             />
+            <br />
             <label>Height: </label>
             <input
               type="number"
               value={height}
               onChange={(e) => setHeight(Number(e.target.value))}
             />
-            <legend>Point 1</legend>
-            <ControllerForm
-              guideline={guideline1}
-              guidelineChange={setGuideline1}
-            />
-            <legend>Point 2</legend>
-            <ControllerForm
-              guideline={guideline2}
-              guidelineChange={setGuideline2}
-            />
-            <legend>Point 3</legend>
-            <ControllerForm
-              guideline={guideline3}
-              guidelineChange={setGuideline3}
-            />
+            <div className="points">
+              <div className="point">
+                <legend>Point 1</legend>
+                <ControllerForm
+                  guideline={guideline1}
+                  guidelineChange={setGuideline1}
+                />
+              </div>
+              <div className="point">
+                <legend>Point 2</legend>
+                <ControllerForm
+                  guideline={guideline2}
+                  guidelineChange={setGuideline2}
+                />
+              </div>
+            </div>
+            <div>
+              <legend>Point 3</legend>
+              <ControllerForm
+                guideline={guideline3}
+                guidelineChange={setGuideline3}
+              />
+            </div>
             <button
               className="export"
               onClick={() => perspectiveRef.current?.exportSvg?.()}

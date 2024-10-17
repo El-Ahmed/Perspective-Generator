@@ -24,7 +24,7 @@ const ControllerForm = ({
         }
       />
       <br />
-      <label>X: </label>
+      <label>X position: </label>
       <input
         type="number"
         value={guideline.point.x}
@@ -36,7 +36,8 @@ const ControllerForm = ({
           })
         }
       />
-      <label>Y: </label>
+      <br />
+      <label>Y position: </label>
       <input
         type="number"
         value={guideline.point.y}
@@ -48,7 +49,8 @@ const ControllerForm = ({
           })
         }
       />
-      <legend>Lines count: </legend>
+      <br />
+      <label>Lines count: </label>
       <input
         type="number"
         value={guideline.lineCount}

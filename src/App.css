@@ -53,6 +53,7 @@
 
 .form-settings {
   padding: 2rem;
+  padding-top: 0;
 }
 .export {
   margin: 1rem;
@@ -67,4 +68,13 @@
 }
 .color-picker {
   position: absolute;
+}
+
+.points {
+  display: flex;
+}
+
+.point {
+  padding-right: 0.5rem;
+  padding-bottom: 0.5rem;
 }

@@ -251,6 +251,7 @@ td {
 tr {
   display: flex;
   justify-content: space-between;
+  width: 100%;
 }
 
 .sketch-picker {

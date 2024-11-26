@@ -72,7 +72,10 @@ function App() {
               <img className="buttonIcon" src="/svg-svgrepo-com.svg"></img>
               <span>Download as SVG</span>
             </div>
-            <div className="card button krona-one-regular">
+            <div
+              className="card button krona-one-regular"
+              onClick={() => window.open("https://ko-fi.com/elahmed", "_blank")}
+            >
               <img className="buttonIcon" src="/kofi_symbol.svg"></img>
               <span>Support me on ko-fi</span>
             </div>

@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./App.css";
 import ControllerForm from "./components/ControllerForm";
 import Perspective, { PerspectiveHandle } from "./components/Perspective";
@@ -26,6 +26,16 @@ function App() {
     width: 1920,
     backgroundColor: "#fff",
   });
+
+  useEffect(() => {
+    if (window.innerWidth < 1000) {
+      setImageSettings({
+        height: 1920,
+        width: 1080,
+        backgroundColor: "#fff",
+      });
+    }
+  }, []);
 
   const perspectiveRef = useRef<PerspectiveHandle>(null);
 

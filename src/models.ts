@@ -8,3 +8,9 @@ export interface Guideline {
   lineCount: number;
   color: string;
 }
+
+export interface ImageSettings {
+  width: number;
+  height: number;
+  backgroundColor: string;
+}

@@ -31,10 +31,6 @@
   }
 }
 
-.card {
-  padding: 2em;
-}
-
 .read-the-docs {
   color: #888;
 }
@@ -63,9 +59,10 @@
 }
 
 .color {
-  height: 2rem;
+  height: 100%;
   vertical-align: middle;
-  margin: 0.5rem;
+  width: 5rem;
+  border-radius: 60px;
 }
 .color-picker {
   position: absolute;
@@ -81,4 +78,178 @@
 }
 th {
   text-align: left;
+}
+
+.container {
+  padding: 60px;
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.card {
+  border-radius: 60px;
+  border-color: white;
+  border-width: 3px;
+  border-style: solid;
+  overflow: hidden;
+  box-sizing: border-box;
+  flex: 1;
+  min-width: 50%;
+  max-height: 46rem;
+}
+
+.title {
+  margin: 0;
+}
+
+.cards-container {
+  margin-top: 60px;
+  flex: 1;
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.secondary-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex: 1;
+  .card {
+    flex: auto;
+  }
+}
+
+.button {
+  height: 3rem;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  font-size: 1.5em;
+  width: max-content;
+  min-width: 100%;
+  cursor: pointer;
+}
+.buttonIcon {
+  margin-right: 9px;
+  max-width: 3rem;
+  max-height: 2.5rem;
+}
+
+.controls {
+  padding: 20px;
+  h2 {
+    margin: 0;
+    margin-bottom: 12px;
+  }
+}
+.selected-control {
+  display: flex;
+  align-items: center;
+}
+.color-circle {
+  margin-right: 10px;
+  width: 24px;
+  height: 24px;
+  border-radius: 60px;
+}
+
+.p-dropdown-trigger {
+  color: white;
+}
+.p-dropdown {
+  width: 100%;
+  background: transparent;
+  border: 2px solid white;
+  border-radius: 60px;
+  box-shadow: none;
+}
+.p-dropdown-label {
+  color: white;
+}
+
+.p-dropdown-panel {
+  border: 2px solid white;
+  border-radius: 30px;
+  background-color: #242424;
+  overflow: hidden;
+  margin-top: 4px;
+}
+.p-dropdown-item {
+  color: white;
+}
+
+.p-dropdown-item.p-highlight {
+  background: #333;
+}
+.p-dropdown-item.p-highlight.p-focus {
+  background: #444;
+  color: white;
+}
+.p-dropdown-item.p-focus {
+  background: #444;
+  color: white;
+}
+.p-dropdown-items {
+  padding: 0;
+}
+
+input {
+  background: none;
+  border: none;
+  outline: none;
+  flex: 1;
+  margin-left: 0.5rem;
+  width: 8rem;
+  font-size: 1rem;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.input {
+  border: 2px solid white;
+  border-radius: 60px;
+  padding-inline: 12px;
+  border-collapse: collapse;
+  height: 3rem;
+  align-items: center;
+  display: flex;
+  padding: 0.25rem;
+  padding-inline: 0.5rem;
+  font-size: 1rem;
+}
+.current-control {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 24rem;
+}
+td:first-child,
+th:first-child {
+  border-right: white solid 1px;
+  margin-right: 0.5rem;
+}
+td {
+  display: flex;
+  justify-content: space-between;
+  flex: 1;
+}
+tr {
+  display: flex;
+  justify-content: space-between;
+}
+
+.sketch-picker {
+  background: #333 !important;
+  border: white solid !important;
+  border-radius: 20px !important;
+  label {
+    color: white !important;
+  }
+}
+.perspective-card {
+  height: 46rem;
+  flex: 5;
 }

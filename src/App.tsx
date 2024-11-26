@@ -2,7 +2,8 @@ import { useRef, useState } from "react";
 import "./App.css";
 import ControllerForm from "./components/ControllerForm";
 import Perspective, { PerspectiveHandle } from "./components/Perspective";
-import ColorPicker from "./components/ColorPicker";
+import { PrimeReactProvider } from "primereact/api";
+import "primereact/resources/themes/lara-light-cyan/theme.css";
 
 function App() {
   const [guideline1, setGuideline1] = useState({
@@ -17,115 +18,68 @@ function App() {
   });
   const [guideline3, setGuideline3] = useState({
     point: { x: 960, y: -4000 },
-    lineCount: 120,
+    lineCount: 50,
     color: "#800080",
   });
-  const [height, setHeight] = useState(1080);
-  const [width, setWidth] = useState(1920);
-  const [backgroundColor, setBackgroundColor] = useState("#ffffff");
-  const [showSettings, setShowSettings] = useState(false);
+  const [imageSettings, setImageSettings] = useState({
+    height: 1080,
+    width: 1920,
+    backgroundColor: "#fff",
+  });
 
   const perspectiveRef = useRef<PerspectiveHandle>(null);
 
   return (
-    <>
-      <div className="form">
-        <div
-          className="settings"
-          onClick={() => setShowSettings(!showSettings)}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            height="24px"
-            viewBox="0 -960 960 960"
-            width="24px"
-            fill="#e8eaed"
-          >
-            <path d="m370-80-16-128q-13-5-24.5-12T307-235l-119 50L78-375l103-78q-1-7-1-13.5v-27q0-6.5 1-13.5L78-585l110-190 119 50q11-8 23-15t24-12l16-128h220l16 128q13 5 24.5 12t22.5 15l119-50 110 190-103 78q1 7 1 13.5v27q0 6.5-2 13.5l103 78-110 190-118-50q-11 8-23 15t-24 12L590-80H370Zm70-80h79l14-106q31-8 57.5-23.5T639-327l99 41 39-68-86-65q5-14 7-29.5t2-31.5q0-16-2-31.5t-7-29.5l86-65-39-68-99 42q-22-23-48.5-38.5T533-694l-13-106h-79l-14 106q-31 8-57.5 23.5T321-633l-99-41-39 68 86 64q-5 15-7 30t-2 32q0 16 2 31t7 30l-86 65 39 68 99-42q22 23 48.5 38.5T427-266l13 106Zm42-180q58 0 99-41t41-99q0-58-41-99t-99-41q-59 0-99.5 41T342-480q0 58 40.5 99t99.5 41Zm-2-140Z" />
-          </svg>
-        </div>
-        {!showSettings ? null : (
-          <div className="form-settings">
-            <h2>Container:</h2>
-            <table>
-              <tr>
-                <th>Background color:</th>
-                <th>
-                  <ColorPicker
-                    color={backgroundColor}
-                    colorChanged={setBackgroundColor}
-                  ></ColorPicker>
-                </th>
-              </tr>
-              <tr>
-                <th>Width:</th>
-                <th>
-                  <input
-                    type="number"
-                    value={width}
-                    onChange={(e) => setWidth(Number(e.target.value))}
-                  />
-                </th>
-              </tr>
-              <tr>
-                <th>Height:</th>
-                <th>
-                  <input
-                    type="number"
-                    value={height}
-                    onChange={(e) => setHeight(Number(e.target.value))}
-                  />
-                </th>
-              </tr>
-            </table>
-            <div className="points">
-              <div className="point">
-                <h2>Point 1:</h2>
-                <ControllerForm
-                  guideline={guideline1}
-                  guidelineChange={setGuideline1}
-                />
-              </div>
-              <div className="point">
-                <h2>Point 2:</h2>
-                <ControllerForm
-                  guideline={guideline2}
-                  guidelineChange={setGuideline2}
-                />
-              </div>
-            </div>
-            <div className="point">
-              <h2>Point 3:</h2>
+    <PrimeReactProvider>
+      <div className="container">
+        <h1 className="krona-one-regular title">Perspective Generator</h1>
+        <div className="cards-container">
+          <div className="card perspective-card">
+            <Perspective
+              ref={perspectiveRef}
+              guideline1={guideline1}
+              guideline2={guideline2}
+              guideline3={guideline3}
+              backgroundColor={imageSettings.backgroundColor}
+              height={imageSettings.height}
+              width={imageSettings.width}
+            />
+          </div>
+          <div className="secondary-cards">
+            <div className="card controls">
               <ControllerForm
-                guideline={guideline3}
-                guidelineChange={setGuideline3}
+                imageSettings={imageSettings}
+                setImageSettings={setImageSettings}
+                guideline1={guideline1}
+                setGuideline1={setGuideline1}
+                guideline2={guideline2}
+                setGuideline2={setGuideline2}
+                guideline3={guideline3}
+                setGuideline3={setGuideline3}
               />
             </div>
-            <button
-              className="export"
-              onClick={() => perspectiveRef.current?.exportSvg?.()}
-            >
-              Export SVG
-            </button>
-            <button
-              className="export"
+            <div
+              className="card button krona-one-regular"
               onClick={() => perspectiveRef.current?.exportPng?.()}
             >
-              Export PNG
-            </button>
+              <img className="buttonIcon" src="/png-svgrepo-com.svg"></img>
+              <span>Download as PNG</span>
+            </div>
+            <div
+              className="card button krona-one-regular"
+              onClick={() => perspectiveRef.current?.exportSvg?.()}
+            >
+              <img className="buttonIcon" src="/svg-svgrepo-com.svg"></img>
+              <span>Download as SVG</span>
+            </div>
+            <div className="card button krona-one-regular">
+              <img className="buttonIcon" src="/kofi_symbol.svg"></img>
+              <span>Support me on ko-fi</span>
+            </div>
           </div>
-        )}
+        </div>
       </div>
-      <Perspective
-        ref={perspectiveRef}
-        guideline1={guideline1}
-        guideline2={guideline2}
-        guideline3={guideline3}
-        backgroundColor={backgroundColor}
-        height={height}
-        width={width}
-      />
-    </>
+    </PrimeReactProvider>
   );
 }
 

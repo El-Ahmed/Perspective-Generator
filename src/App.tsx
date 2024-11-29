@@ -72,21 +72,21 @@ function App() {
               className="card button krona-one-regular"
               onClick={() => perspectiveRef.current?.exportPng?.()}
             >
-              <img className="buttonIcon" src="/png-svgrepo-com.svg"></img>
+              <i className="buttonIcon pngIcon"></i>
               <span>Download as PNG</span>
             </div>
             <div
               className="card button krona-one-regular"
               onClick={() => perspectiveRef.current?.exportSvg?.()}
             >
-              <img className="buttonIcon" src="/svg-svgrepo-com.svg"></img>
+              <i className="buttonIcon svgIcon"></i>
               <span>Download as SVG</span>
             </div>
             <div
               className="card button krona-one-regular"
               onClick={() => window.open("https://ko-fi.com/elahmed", "_blank")}
             >
-              <img className="buttonIcon" src="/kofi_symbol.svg"></img>
+              <i className="buttonIcon kofiIcon"></i>
               <span>Support me on ko-fi</span>
             </div>
           </div>

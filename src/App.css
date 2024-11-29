@@ -146,8 +146,10 @@ th {
 }
 .buttonIcon {
   margin-right: 9px;
-  max-width: 3rem;
-  max-height: 2.5rem;
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 3rem;
+  height: 3rem;
 }
 
 .controls {
@@ -265,4 +267,16 @@ tr {
 .perspective-card {
   flex: 5;
   height: 100%;
+}
+
+.kofiIcon {
+  background-image: url("./assets/kofi_symbol.svg");
+}
+
+.pngIcon {
+  background-image: url("./assets/png-svgrepo-com.svg");
+}
+
+.svgIcon {
+  background-image: url("./assets/svg-svgrepo-com.svg");
 }

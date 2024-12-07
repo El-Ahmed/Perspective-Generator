@@ -174,10 +174,14 @@ const Perspective = forwardRef<
     };
     const handleTouchStart = (touch: TouchEvent) => {
       const e = touch.touches[0];
+      document.body.style.overflow = "hidden";
+      touch.preventDefault();
       handleMouseDown(e);
     };
     const handleTouchMove = (touch: TouchEvent) => {
       const e = touch.touches[0];
+      document.body.style.overflow = "hidden";
+      touch.preventDefault();
       handleMouseMove(e);
     };
 
@@ -254,6 +258,7 @@ const Perspective = forwardRef<
 
     const handleMouseUp = () => {
       setIsDragging(false);
+      document.body.style.overflow = "";
     };
 
     return (

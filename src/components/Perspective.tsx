@@ -1,4 +1,10 @@
-import { forwardRef, useImperativeHandle, useRef } from "react";
+import {
+  forwardRef,
+  TouchEvent,
+  useImperativeHandle,
+  useRef,
+  useState,
+} from "react";
 import { Control, Guideline, Point } from "../models";
 
 export type PerspectiveHandle = {
@@ -11,8 +17,11 @@ const Perspective = forwardRef<
   PerspectiveHandle,
   {
     guideline1: Guideline;
+    setGuideline1: (value: Guideline) => void;
     guideline2: Guideline;
+    setGuideline2: (value: Guideline) => void;
     guideline3: Guideline;
+    setGuideline3: (value: Guideline) => void;
     height: number;
     width: number;
     backgroundColor: string;
@@ -22,8 +31,11 @@ const Perspective = forwardRef<
   (
     {
       guideline1,
+      setGuideline1,
       guideline2,
+      setGuideline2,
       guideline3,
+      setGuideline3,
       height,
       width,
       backgroundColor,
@@ -31,7 +43,7 @@ const Perspective = forwardRef<
     },
     ref
   ) => {
-    const svgRef = useRef(null);
+    const svgRef = useRef<SVGSVGElement>(null);
 
     const exportSvg = () => {
       if (!svgRef.current) return;
@@ -153,13 +165,123 @@ const Perspective = forwardRef<
       return lines.filter((points) => points.point2);
     };
 
+    const [isDragging, setIsDragging] = useState(false);
+    const [startPosition, setStartPosition] = useState({ x: 0, y: 0 });
+
+    const handleMouseDown = (e: { clientX: number; clientY: number }) => {
+      setIsDragging(true);
+      setStartPosition({ x: e.clientX, y: e.clientY });
+    };
+    const handleTouchStart = (touch: TouchEvent) => {
+      const e = touch.touches[0];
+      handleMouseDown(e);
+    };
+    const handleTouchMove = (touch: TouchEvent) => {
+      const e = touch.touches[0];
+      handleMouseMove(e);
+    };
+
+    const handleMouseMove = (e: { clientX: number; clientY: number }) => {
+      if (!isDragging) return;
+      if (!svgRef.current) return;
+
+      const newX = e.clientX;
+      const newY = e.clientY;
+
+      const dx = newX - startPosition.x,
+        dy = newY - startPosition.y;
+
+      setStartPosition({ x: e.clientX, y: e.clientY });
+
+      const rect = svgRef.current.getBoundingClientRect();
+      const adjustedDx = (dx * width) / rect.width,
+        adjustedDy = (dy * height) / rect.height;
+
+      switch (selectedControl) {
+        case Control.Guideline1:
+          setGuideline1({
+            ...guideline1,
+            point: {
+              x: +(guideline1.point.x + adjustedDx).toFixed(2),
+              y: +(guideline1.point.y + adjustedDy).toFixed(2),
+            },
+          });
+          break;
+        case Control.Guideline2:
+          setGuideline2({
+            ...guideline2,
+            point: {
+              x: +(guideline2.point.x + adjustedDx).toFixed(2),
+              y: +(guideline2.point.y + adjustedDy).toFixed(2),
+            },
+          });
+          break;
+        case Control.Guideline3:
+          setGuideline3({
+            ...guideline3,
+            point: {
+              x: +(guideline3.point.x + adjustedDx).toFixed(2),
+              y: +(guideline3.point.y + adjustedDy).toFixed(2),
+            },
+          });
+          break;
+
+        default:
+          setGuideline1({
+            ...guideline1,
+            point: {
+              x: +(guideline1.point.x + adjustedDx).toFixed(2),
+              y: +(guideline1.point.y + adjustedDy).toFixed(2),
+            },
+          });
+          setGuideline2({
+            ...guideline2,
+            point: {
+              x: +(guideline2.point.x + adjustedDx).toFixed(2),
+              y: +(guideline2.point.y + adjustedDy).toFixed(2),
+            },
+          });
+          setGuideline3({
+            ...guideline3,
+            point: {
+              x: +(guideline3.point.x + adjustedDx).toFixed(2),
+              y: +(guideline3.point.y + adjustedDy).toFixed(2),
+            },
+          });
+          break;
+      }
+    };
+
+    const handleMouseUp = () => {
+      setIsDragging(false);
+    };
+
     return (
-      <div style={{ width: "100%", height: "100%", display: "flex" }}>
+      <div
+        style={{
+          width: "100%",
+          height: "100%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
         <svg
           ref={svgRef}
           viewBox={`0 0 ${width} ${height}`}
-          width="100%"
-          height="100%"
+          style={{
+            maxWidth: "100%",
+            maxHeight: "100%",
+            cursor: isDragging ? "grabbing" : "grab",
+          }}
+          onMouseDown={handleMouseDown}
+          onTouchStart={handleTouchStart}
+          onMouseUp={handleMouseUp}
+          onTouchEnd={handleMouseUp}
+          onMouseLeave={handleMouseUp}
+          onTouchCancel={handleMouseUp}
+          onMouseMove={handleMouseMove}
+          onTouchMove={handleTouchMove}
         >
           <rect
             x="0"

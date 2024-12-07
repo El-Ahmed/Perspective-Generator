@@ -50,8 +50,11 @@ function App() {
             <Perspective
               ref={perspectiveRef}
               guideline1={guideline1}
+              setGuideline1={setGuideline1}
               guideline2={guideline2}
+              setGuideline2={setGuideline2}
               guideline3={guideline3}
+              setGuideline3={setGuideline3}
               backgroundColor={imageSettings.backgroundColor}
               height={imageSettings.height}
               width={imageSettings.width}

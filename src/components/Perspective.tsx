@@ -1,5 +1,5 @@
 import { forwardRef, useImperativeHandle, useRef } from "react";
-import { Guideline, Point } from "../models";
+import { Control, Guideline, Point } from "../models";
 
 export type PerspectiveHandle = {
   exportSvg: () => void;
@@ -16,10 +16,19 @@ const Perspective = forwardRef<
     height: number;
     width: number;
     backgroundColor: string;
+    selectedControl: Control;
   }
 >(
   (
-    { guideline1, guideline2, guideline3, height, width, backgroundColor },
+    {
+      guideline1,
+      guideline2,
+      guideline3,
+      height,
+      width,
+      backgroundColor,
+      selectedControl,
+    },
     ref
   ) => {
     const svgRef = useRef(null);
@@ -81,7 +90,7 @@ const Perspective = forwardRef<
     }));
 
     const getStrokeWidth = () => {
-      return Math.min(height / 500, width / 500);
+      return Math.min(height / 800, width / 800);
     };
     const getBasicSecondPoint = (guideline: Guideline) => {
       const { lineCount, point } = guideline;
@@ -167,7 +176,10 @@ const Perspective = forwardRef<
                 x2={points.point2.x}
                 y2={points.point2.y}
                 stroke={guideline1.color}
-                strokeWidth={getStrokeWidth()}
+                strokeWidth={
+                  getStrokeWidth() *
+                  (selectedControl === Control.Guideline1 ? 2 : 1)
+                }
               ></line>
             );
           })}
@@ -179,7 +191,10 @@ const Perspective = forwardRef<
                 x2={points.point2.x}
                 y2={points.point2.y}
                 stroke={guideline2.color}
-                strokeWidth={getStrokeWidth()}
+                strokeWidth={
+                  getStrokeWidth() *
+                  (selectedControl === Control.Guideline2 ? 2 : 1)
+                }
               ></line>
             );
           })}
@@ -191,7 +206,10 @@ const Perspective = forwardRef<
                 x2={points.point2.x}
                 y2={points.point2.y}
                 stroke={guideline3.color}
-                strokeWidth={getStrokeWidth()}
+                strokeWidth={
+                  getStrokeWidth() *
+                  (selectedControl === Control.Guideline3 ? 2 : 1)
+                }
               ></line>
             );
           })}

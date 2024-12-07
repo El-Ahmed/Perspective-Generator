@@ -4,8 +4,10 @@ import ControllerForm from "./components/ControllerForm";
 import Perspective, { PerspectiveHandle } from "./components/Perspective";
 import { PrimeReactProvider } from "primereact/api";
 import "primereact/resources/themes/lara-light-cyan/theme.css";
+import { Control } from "./models";
 
 function App() {
+  const [selectedControl, setSelectedControl] = useState(Control.ImageSettings);
   const [guideline1, setGuideline1] = useState({
     point: { x: 200, y: 400 },
     lineCount: 20,
@@ -53,11 +55,14 @@ function App() {
               backgroundColor={imageSettings.backgroundColor}
               height={imageSettings.height}
               width={imageSettings.width}
+              selectedControl={selectedControl}
             />
           </div>
           <div className="secondary-cards">
             <div className="card controls">
               <ControllerForm
+                selectedControl={selectedControl}
+                setSelectedControl={setSelectedControl}
                 imageSettings={imageSettings}
                 setImageSettings={setImageSettings}
                 guideline1={guideline1}

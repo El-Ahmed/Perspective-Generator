@@ -1,15 +1,7 @@
 import { Dropdown, DropdownProps } from "primereact/dropdown";
-import { Guideline, ImageSettings } from "../models";
+import { Control, Guideline, ImageSettings } from "../models";
 import GuidelineForm from "./GuidelineForm";
 import ImageSettingsForm from "./ImageSettingsForm";
-import { useState } from "react";
-
-enum Control {
-  ImageSettings = "ImageSettings",
-  Guideline1 = "Guideline1",
-  Guideline2 = "Guideline2",
-  Guideline3 = "Guideline3",
-}
 
 const ControllerForm = ({
   imageSettings,
@@ -20,6 +12,8 @@ const ControllerForm = ({
   setGuideline2,
   guideline3,
   setGuideline3,
+  selectedControl,
+  setSelectedControl,
 }: {
   imageSettings: ImageSettings;
   setImageSettings: (value: ImageSettings) => void;
@@ -29,8 +23,9 @@ const ControllerForm = ({
   setGuideline2: (value: Guideline) => void;
   guideline3: Guideline;
   setGuideline3: (value: Guideline) => void;
+  selectedControl: Control;
+  setSelectedControl: (value: Control) => void;
 }) => {
-  const [selectedControl, setSelectedControl] = useState(Control.ImageSettings);
   const getControl = (option: Control) => {
     const control = { name: "Control", color: "#fff" };
     switch (option) {

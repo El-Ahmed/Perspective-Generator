@@ -9,7 +9,8 @@ A simple and intuitive web tool for creating customizable perspective grids. Per
   - Use transparent backgrounds for overlaying grids on other drawings.  
 - **Flexible Perspective Control**:  
   - Adjust the positions of three perspective guide points.  
-  - Define the number of perspective lines emanating from each guide point.  
+  - Define the number of perspective lines emanating from each guide point.
+  - **New Drag Feature**: Move the currently selected guidepoint from the control panel or drag all the guide points at once when the "Image Settings" option is selected.  
   - Customize line colors, including transparent lines, for subtle overlays.  
 - **Export Options**:  
   - Save your grid as an **SVG** (scalable and editable) or **PNG** (high-quality raster image).  
@@ -45,7 +46,10 @@ This tool is designed for:
    - Choose a `background color` (solid or transparent).  
 
 3. **Adjust Perspective Points**:  
-   - Manually set the `x` and `y` coordinates of the three guide points to control vanishing points.  
+   - Manually set the `x` and `y` coordinates of the three guide points to control vanishing points.
+   - **New Drag Feature**:
+     - Select a guideline from the control panel to move it individually.
+     - If "Image Settings" is selected, all the guidelines can be moved simultaneously.
 
 4. **Customize Grid Lines**:  
    - Select the number of lines radiating from each guide point.  
